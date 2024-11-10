@@ -31,7 +31,6 @@
   <xsd:include schemaLocation="B2MML-WorkSchedule.xsd" />
   <xsd:include schemaLocation="B2MML-ErrorMessage.xsd"/>
   <xsd:include schemaLocation="B2MML-OperationsTest.xsd"/>
-  <xsd:include schemaLocation="B2MML-TestSpecification.xsd" />
   <xsd:include schemaLocation="B2MML-WorkCalendar.xsd" />
 
 
@@ -42,7 +41,7 @@
   <xsd:annotation>
     <xsd:documentation>
       This file simply includes the B2MML schemas into a single
-      definition that will allow the inclusion of these schemas into the
+      definition in order to include these schemas into the
       global set of Process Centric Notifys as the Process Centric Notify
       Proposal 1.0.
 
@@ -68,55 +67,35 @@
       injuries incurred by use of the Work or as a result of this
       agreement.
 
-      Based upon the ANSI/ISA-95.00.02-2010 Enterprise-Control System
+      Based upon the ANSI/ISA-95.00.02-2018 Enterprise-Control System
       Integration Part 2: Object Model Attributes Standard and the
-      ANSI/ISA-95.00.05-2006 Enterprise-Control System Integration
+      ANSI/ISA-95.00.05-2018 Enterprise-Control System Integration
       Part 5: Business to Manufacturing Transactions
+	  
+	  Copyright 2024 Enterprise Transformation Partners Pty Ltd
+      All Rights Reserved. http://www.etpartners.com.au
     </xsd:documentation>
 
     <xsd:documentation>
-
+		Revision history maintained in GitHub
+		
+		Release Notes 10 November 2024
+		Updated for B2MML v7.1 2023
+		- removed references to TestSpecification.xsd
+		- corrected NotifyVCMDesignDefinedType
+		- simplified Notifies for TestSpecifications
+		Authors
+			Gerard Moloney
+			Alex Marginet
 
     </xsd:documentation>
   </xsd:annotation>
   
-  
-    <!-- moved from common -->
-  <xsd:complexType name="TransNotifyType" />  
-  
-  
-<xsd:complexType name = "MaterialTestSpecificationType">
-    <xsd:sequence>
-      <xsd:element name = "TestSpecification" type = "TestSpecificationType"/>
-      <xsd:element name = "MaterialTestSpecification"  type = "etp:MaterialTestSpecificationType"  minOccurs = "0" maxOccurs = "unbounded"/>   
-    </xsd:sequence>
-  </xsd:complexType>
-
- <xsd:complexType name = "PhysicalAssetCapabilityTestSpecificationType">
-    <xsd:sequence>
-      <xsd:element name = "TestSpecification" type = "TestSpecificationType"/>
-      <xsd:element name = "PhysicalAssetCapabilityTestSpecification"  type = "etp:PhysicalAssetCapabilityTestSpecificationType" minOccurs = "0" maxOccurs = "unbounded"/>
-    </xsd:sequence>
-  </xsd:complexType> 
-  
-   <xsd:complexType name = "EquipmentCapabilityTestSpecificationType">
-    <xsd:sequence>
-      <xsd:element name = "TestSpecification" type = "TestSpecificationType"/>
-      <xsd:element name = "EquipmentCapabilityTestSpecification"  type = "etp:EquipmentCapabilityTestSpecificationType"  minOccurs = "0" maxOccurs = "unbounded"/>
-    </xsd:sequence>   
-  </xsd:complexType>
-  
-  <xsd:complexType name = "QualificationTestSpecificationType">
-          <xsd:sequence>
-      	  <xsd:element name = "TestSpecification" type = "TestSpecificationType"/>
-          <xsd:element name = "QualificationTestSpecification"  type = "etp:QualificationTestSpecificationType"   minOccurs = "0" maxOccurs = "unbounded"/>
-      	  </xsd:sequence>
- </xsd:complexType>
-  
+ 
 
   <!-- Global Elements -->
 
-  <xsd:element name="NotifyValueChainModelDesignDefinedEvent" type="etp:NotifyValueChainModelDesignDefinedEventType" />
+  <xsd:element name="NotifyVCMDesignDefinedEvent" type="etp:NotifyVCMDesignDefinedEventType" />
   <xsd:element name="NotifyWorkCalendarDefinedEvent" type="etp:NotifyWorkCalendarDefinedEventType" />
 
   <xsd:element name="NotifyOperationsScheduledEvent" type="etp:NotifyOperationsScheduledEventType" />
@@ -144,45 +123,30 @@
   <xsd:element name="NotifyWorkAbortedEvent" type="etp:NotifyWorkAbortedEventType" />
   <xsd:element name="NotifyPerformanceTrackedEvent" type="etp:NotifyPerformanceTrackedEventType" />
   <xsd:element name="NotifyPerformanceReconciledEvent" type="etp:NotifyPerformanceReconciledEventType" />
-  <xsd:element name="NotifyMaterialTestSpecifiedEvent" type="etp:NotifyMaterialTestSpecifiedEventType" />
-  <xsd:element name="NotifyMaterialTestSpecificationAdjustedEvent"
-               type="etp:NotifyMaterialTestSpecificationAdjustedEventType" />
-  <xsd:element name="NotifyMaterialTestSpecificationRetiredEvent"
-               type="etp:NotifyMaterialTestSpecificationRetiredEventType" />
-  <xsd:element name="NotifyEquipmentCapabilityTestSpecifiedEvent"
-               type="etp:NotifyEquipmentCapabilityTestSpecifiedEventType" />
-  <xsd:element name="NotifyEquipmentCapabilityTestAdjustedEvent" type="etp:NotifyEquipmentCapabilityTestAdjustedEventType" />
-  <xsd:element name="NotifyEquipmentCapabilityTestRetiredEvent" type="etp:NotifyEquipmentCapabilityTestRetiredEventType" />
-  <xsd:element name="NotifyQualificationTestSpecifiedEvent" type="etp:NotifyQualificationTestSpecifiedEventType" />
-  <xsd:element name="NotifyQualificationTestAdjustedEvent" type="etp:NotifyQualificationTestAdjustedEventType" />
-  <xsd:element name="NotifyQualificationTestRetiredEvent" type="etp:NotifyQualificationTestRetiredType" />
-  <xsd:element name="NotifyPhysicalAssetCapabilityTestSpecifiedEvent"
-               type="etp:NotifyPhysicalAssetCapabilityTestSpecifiedEventType" />
-  <xsd:element name="NotifyPhysicalAssetCapabilityTestAdjustedEvent"
-               type="etp:NotifyPhysicalAssetCapabilityTestAdjustedEventType" />
-  <xsd:element name="NotifyPhysicalAssetCapabilityTestRetiredEvent"
-               type="etp:NotifyPhysicalAssetCapabilityTestRetiredEventType" />
-
-
+  <xsd:element name="NotifyTestSpecificationDefinedEvent" type="etp:NotifyTestSpecificationDefinedEventType" />
+  <xsd:element name="NotifyTestSpecificationAdjustedEvent" type="etp:NotifyTestSpecificationAdjustedEventType" />
+  <xsd:element name="NotifyTestSpecificationRetiredEvent" type="etp:NotifyTestSpecificationRetiredEventType" />
 
 
   <!-- Simple & Complex Types	-->
 
-  <xsd:complexType name="NotifyValueChainModelDesignDefinedEvent">
+  <xsd:complexType name="TransNotifyType" /> 
+
+  <xsd:complexType name="NotifyVCMDesignDefinedEventType">
     <xsd:sequence>
       <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
       <xsd:element name="DataArea">
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="Notify" type="etp:TransNotifyType" />
-            <xsd:element name="ValueChainModelDesignDefinedEvent" type="ValueChainModelDesignDefinedEventType" />
+            <xsd:element name="VCMDesignDefinedEvent" type="VCMDesignDefinedEventType" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
 
-  <xsd:complexType name="ValueChainModelDesignDefinedEventType">
+  <xsd:complexType name="VCMDesignDefinedEventType">
     <xsd:sequence>
       <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
       <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
@@ -544,36 +508,6 @@
           <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
         </xsd:complexType>
       </xsd:element>
-
-<!-- these components are duplicated from ResourceDefined components so will be omitted
-      <xsd:element name = "AddedResourceRelationshipNetworkRecord"  minOccurs="0" maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "ResourceRelationshipNetwork" type = "ResourceRelationshipNetworkType" />
-          </xsd:sequence>
-          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
-          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name = "ChangedResourceRelationshipNetworkRecord"  minOccurs="0" maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "ResourceRelationshipNetwork" type = "ResourceRelationshipNetworkType" />
-          </xsd:sequence>
-          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
-          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name = "DeletedResourceRelationshipNetworkRecord"  minOccurs="0" maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "ResourceRelationshipNetwork" type = "ResourceRelationshipNetworkType" />
-          </xsd:sequence>
-          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
-          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
-        </xsd:complexType>
-      </xsd:element>
--->
 
 <!--  Operations Defined Components -->
       <xsd:element name="AddedOperationsDefinitionRecord" minOccurs="0" maxOccurs="unbounded">
@@ -3638,21 +3572,21 @@
   </xsd:complexType>
   <!--    -->
 
-  <xsd:complexType name="NotifyMaterialTestSpecifiedEventType">
+  <xsd:complexType name="NotifyTestSpecificationDefinedEventType">
     <xsd:sequence>
       <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
       <xsd:element name="DataArea">
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="MaterialTestSpecifiedEvent" type="MaterialTestSpecifiedEventType" />
+            <xsd:element name="TestSpecificationDefinedEvent" type="TestSpecificationDefinedEventType" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
 
-  <xsd:complexType name="MaterialTestSpecifiedEventType">
+  <xsd:complexType name="TestSpecificationDefinedEventType">
     <xsd:sequence>
       <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
       <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
@@ -3663,33 +3597,60 @@
       <xsd:element name = "AddedMaterialTestSpecificationRecord" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name = "MaterialTestSpecification" type = "MaterialTestSpecificationType" />
+            <xsd:element name = "MaterialTestSpecification" type = "TestSpecificationType" />
           </xsd:sequence>
           <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
           <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name = "AddedEquipmentTestSpecificationRecord" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name = "EquipmentTestSpecification" type = "TestSpecificationType" />
+          </xsd:sequence>
+          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
+          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name = "AddedPersonnelTestSpecificationRecord" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name = "PersonnelTestSpecification" type = "TestSpecificationType" />
+          </xsd:sequence>
+          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
+          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name = "AddedPhysicalAssetTestSpecificationRecord" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name = "PhysicalAssetTestSpecification" type = "TestSpecificationType" />
+          </xsd:sequence>
+          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
+          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
+        </xsd:complexType>
+      </xsd:element>
+
     </xsd:sequence>
   </xsd:complexType>
 
   <!--    -->
 
-  <xsd:complexType name="NotifyMaterialTestSpecificationAdjustedEventType">
+  <xsd:complexType name="NotifyTestSpecificationAdjustedEventType">
     <xsd:sequence>
       <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
       <xsd:element name="DataArea">
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="MaterialTestSpecificationAdjustedEvent"
-                         type="MaterialTestSpecificationAdjustedEventType" />
+            <xsd:element name="TestSpecificationAdjustedEvent" type="TestSpecificationAdjustedEventType" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
 
-  <xsd:complexType name="MaterialTestSpecificationAdjustedEventType">
+  <xsd:complexType name="TestSpecificationAdjustedEventType">
     <xsd:sequence>
       <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
       <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
@@ -3700,31 +3661,61 @@
       <xsd:element name = "ChangedMaterialTestSpecificationRecord" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name = "MaterialTestSpecification" type = "MaterialTestSpecificationType" />
+            <xsd:element name = "MaterialTestSpecification" type = "TestSpecificationType" />
           </xsd:sequence>
           <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
           <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name = "ChangedEquipmentTestSpecificationRecord" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name = "EquipmentTestSpecification" type = "TestSpecificationType" />
+          </xsd:sequence>
+          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
+          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name = "ChangedPersonnelTestSpecificationRecord" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name = "PersonnelTestSpecification" type = "TestSpecificationType" />
+          </xsd:sequence>
+          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
+          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name = "ChangedPhysicalAssetTestSpecificationRecord" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name = "PhysicalAssetTestSpecification" type = "TestSpecificationType" />
+          </xsd:sequence>
+          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
+          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
+        </xsd:complexType>
+      </xsd:element>
+
     </xsd:sequence>
   </xsd:complexType>
+
+
   <!--    -->
 
-  <xsd:complexType name="NotifyMaterialTestSpecificationRetiredEventType">
+  <xsd:complexType name="NotifyTestSpecificationRetiredEventType">
     <xsd:sequence>
       <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
       <xsd:element name="DataArea">
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="MaterialTestSpecificationRetiredEvent" type="MaterialTestSpecificationRetiredEventType" />
+            <xsd:element name="TestSpecificationRetiredEvent" type="TestSpecificationRetiredEventType" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
 
-  <xsd:complexType name="MaterialTestSpecificationRetiredEventType">
+  <xsd:complexType name="TestSpecificationRetiredEventType">
     <xsd:sequence>
       <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
       <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
@@ -3735,337 +3726,41 @@
       <xsd:element name = "DeletedMaterialTestSpecificationRecord" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name = "MaterialTestSpecification" type = "MaterialTestSpecificationType" />
+            <xsd:element name = "MaterialTestSpecification" type = "TestSpecificationType" />
           </xsd:sequence>
           <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
           <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
         </xsd:complexType>
       </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-  <!--    -->
-
-  <xsd:complexType name="NotifyEquipmentCapabilityTestSpecifiedEventType">
-    <xsd:sequence>
-      <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
-      <xsd:element name="DataArea">
+      <xsd:element name = "DeletedEquipmentTestSpecificationRecord" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="EquipmentCapabilityTestSpecifiedEvent" type="EquipmentCapabilityTestSpecifiedEventType" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="EquipmentCapabilityTestSpecifiedEventType">
-    <xsd:sequence>
-      <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Priority" type="PriorityType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="HierarchyScope" type="HierarchyScopeType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventTimestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventEffectiveTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name = "AddedEquipmentCapabilityTestSpecificationRecord"  maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "EquipmentCapabilityTestSpecification" type = "EquipmentCapabilityTestSpecificationType" />
+            <xsd:element name = "EquipmentTestSpecification" type = "TestSpecificationType" />
           </xsd:sequence>
           <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
           <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
         </xsd:complexType>
       </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <!--    -->
-
-  <xsd:complexType name="NotifyEquipmentCapabilityTestAdjustedEventType">
-    <xsd:sequence>
-      <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
-      <xsd:element name="DataArea">
+      <xsd:element name = "DeletedPersonnelTestSpecificationRecord" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="EquipmentCapabilityTestAdjustedEvent" type="EquipmentCapabilityTestAdjustedEventType" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="EquipmentCapabilityTestAdjustedEventType">
-    <xsd:sequence>
-      <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Priority" type="PriorityType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="HierarchyScope" type="HierarchyScopeType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventTimestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventEffectiveTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name = "ChangedEquipmentCapabilityTestSpecificationRecord"  maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "EquipmentCapabilityTestSpecification" type = "EquipmentCapabilityTestSpecificationType" />
+            <xsd:element name = "PersonnelTestSpecification" type = "TestSpecificationType" />
           </xsd:sequence>
           <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
           <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
         </xsd:complexType>
       </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-  <!--    -->
-
-  <xsd:complexType name="NotifyEquipmentCapabilityTestRetiredEventType">
-    <xsd:sequence>
-      <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
-      <xsd:element name="DataArea">
+      <xsd:element name = "DeletedPhysicalAssetTestSpecificationRecord" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="EquipmentCapabilityTestRetiredEvent" type="EquipmentCapabilityTestRetiredEventType" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="EquipmentCapabilityTestRetiredEventType">
-    <xsd:sequence>
-      <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Priority" type="PriorityType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="HierarchyScope" type="HierarchyScopeType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventTimestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventEffectiveTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name = "DeletedEquipmentCapabilityTestSpecificationRecord"  maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "EquipmentCapabilityTestSpecification" type = "EquipmentCapabilityTestSpecificationType" />
+            <xsd:element name = "PhysicalAssetTestSpecification" type = "TestSpecificationType" />
           </xsd:sequence>
           <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
           <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
         </xsd:complexType>
       </xsd:element>
+
     </xsd:sequence>
   </xsd:complexType>
 
-  <!--    -->
-
-  <xsd:complexType name="NotifyQualificationTestSpecifiedEventType">
-    <xsd:sequence>
-      <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
-      <xsd:element name="DataArea">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="QualificationTestSpecifiedEvent" type="QualificationTestSpecifiedEventType" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="QualificationTestSpecifiedEventType">
-    <xsd:sequence>
-      <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Priority" type="PriorityType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="HierarchyScope" type="HierarchyScopeType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventTimestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventEffectiveTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name = "AddedQualificationTestSpecificationRecord"  maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "QualificationTestSpecification" type = "QualificationTestSpecificationType" />
-          </xsd:sequence>
-          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
-          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-  <!--    -->
-
-  <xsd:complexType name="NotifyQualificationTestAdjustedEventType">
-    <xsd:sequence>
-      <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
-      <xsd:element name="DataArea">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="QualificationTestAdjustedEvent" type="QualificationTestAdjustedEventType" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="QualificationTestAdjustedEventType">
-    <xsd:sequence>
-      <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Priority" type="PriorityType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="HierarchyScope" type="HierarchyScopeType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventTimestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventEffectiveTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name = "ChangedQualificationTestSpecificationRecord"  maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "QualificationTestSpecification" type = "QualificationTestSpecificationType" />
-          </xsd:sequence>
-          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
-          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <!--    -->
-
-  <xsd:complexType name="NotifyQualificationTestRetiredType">
-    <xsd:sequence>
-      <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
-      <xsd:element name="DataArea">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="QualificationTestRetired" type="QualificationTestRetiredType" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="QualificationTestRetiredType">
-    <xsd:sequence>
-      <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Priority" type="PriorityType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="HierarchyScope" type="HierarchyScopeType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventTimestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventEffectiveTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name = "DeletedQualificationTestSpecificationRecord"  maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "QualificationTestSpecification" type = "QualificationTestSpecificationType" />
-          </xsd:sequence>
-          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
-          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <!--    -->
-
-  <xsd:complexType name="NotifyPhysicalAssetCapabilityTestSpecifiedEventType">
-    <xsd:sequence>
-      <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
-      <xsd:element name="DataArea">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="PhysicalAssetCapabilityTestSpecifiedEvent"
-                         type="PhysicalAssetCapabilityTestSpecifiedEventType" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="PhysicalAssetCapabilityTestSpecifiedEventType">
-    <xsd:sequence>
-      <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Priority" type="PriorityType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="HierarchyScope" type="HierarchyScopeType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventTimestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventEffectiveTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name = "AddedPhysicalAssetCapabilityTestSpecificationRecord" maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "PhysicalAssetCapabilityTestSpecification" type = "PhysicalAssetCapabilityTestSpecificationType" />
-          </xsd:sequence>
-          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
-          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <!--    -->
-
-  <xsd:complexType name="NotifyPhysicalAssetCapabilityTestAdjustedEventType">
-    <xsd:sequence>
-      <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
-      <xsd:element name="DataArea">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="PhysicalAssetCapabilityTestAdjustedEvent"
-                         type="PhysicalAssetCapabilityTestAdjustedEventType" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="PhysicalAssetCapabilityTestAdjustedEventType">
-    <xsd:sequence>
-      <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Priority" type="PriorityType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="HierarchyScope" type="HierarchyScopeType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventTimestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventEffectiveTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name = "ChangedPhysicalAssetCapabilityTestSpecificationRecord" maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "PhysicalAssetCapabilityTestSpecification" type = "PhysicalAssetCapabilityTestSpecificationType" />
-          </xsd:sequence>
-          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
-          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <!--    -->
-
-  <xsd:complexType name="NotifyPhysicalAssetCapabilityTestRetiredEventType">
-    <xsd:sequence>
-      <xsd:element name="ApplicationArea" type="TransApplicationAreaType" />
-      <xsd:element name="DataArea">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="Notify" type="TransNotifyType" />
-            <xsd:element name="PhysicalAssetCapabilityTestRetiredEvent"
-                         type="PhysicalAssetCapabilityTestRetiredEventType" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="PhysicalAssetCapabilityTestRetiredEventType">
-    <xsd:sequence>
-      <xsd:element name="ID" type="IdentifierType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Description" type="DescriptionType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="Priority" type="PriorityType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="HierarchyScope" type="HierarchyScopeType" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventTimestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name="EventEffectiveTime" type="xsd:dateTime" minOccurs="0" maxOccurs="1" />
-      <xsd:element name = "DeletedPhysicalAssetCapabilityTestSpecificationRecord" maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name = "PhysicalAssetCapabilityTestSpecification" type = "PhysicalAssetCapabilityTestSpecificationType" />
-          </xsd:sequence>
-          <xsd:attribute name="recordTimestamp" type="xsd:dateTime" />
-          <xsd:attribute name="effectiveTimestamp" type="xsd:dateTime" />
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-  <!--    -->
 </xsd:schema>
