@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xsd:schema
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.mesa.org/xml/B2MML"
+  xmlns="http://www.mesa.org/xml/B2MML"
+  xmlns:Extended="http://www.mesa.org/xml/B2MML-AllExtensions"   
+  xmlns:etp="http://www.mesa.org/xml/B2MML">
+
+  <xsd:element name="NotifyPartitionSessionManifestEvent" type="etp:NotifyPartitionSessionManifestEventType" />
+
+  <xsd:complexType name="NotifyPartitionSessionManifestEventType">
+    <xsd:sequence>
+        <xsd:element name="MessageType" type="xsd:string" />
+		<xsd:element name="MessageKey" type="xsd:string" />
+		<xsd:element name="PartsCount" type="xsd:int" />
+		<xsd:element name="CreatedAt" type="xsd:dateTime" />
+		<xsd:element name="OriginalObjectId" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
